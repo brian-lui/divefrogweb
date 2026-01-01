@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divefrog - Competitive Multiplayer Action</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="divefrog.html" class="logo">
+                <img src="images/DivefrogIcon.png" alt="Divefrog" class="logo-icon">
+                Divefrog
+            </a>
+            <nav>
+                <a href="#gameplay">Gameplay</a>
+                <a href="#features">Features</a>
+                <a href="#download">Download</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- Replace with your logo image -->
+        <!-- <img src="images/divefrog-logo.png" alt="Divefrog" class="hero-logo"> -->
+        <h1>Divefrog</h1>
+        <p class="tagline">Fast-paced multiplayer frog combat. Dive in, duke it out!</p>
+        <div class="button-group">
+            <a href="#download" class="btn btn-primary">Download Now</a>
+            <a href="#gameplay" class="btn btn-secondary">Watch Gameplay</a>
+        </div>
+    </section>
+
+    <!-- Gameplay Videos Section -->
+    <section id="gameplay" class="gameplay-section">
+        <h2>See It In Action</h2>
+        <div class="gameplay-grid">
+            <div class="gameplay-item">
+                <video autoplay loop muted playsinline>
+                    <source src="images/video1.mp4" type="video/mp4">
+                </video>
+                <div class="caption">Intense multiplayer battles</div>
+            </div>
+            <div class="gameplay-item">
+                <video autoplay loop muted playsinline>
+                    <source src="images/video2.mp4" type="video/mp4">
+                </video>
+                <div class="caption">Master unique combat moves</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Carousel -->
+    <section id="screenshots" class="screenshots-section">
+        <h2>Screenshots</h2>
+        <div class="carousel">
+            <button class="carousel-btn carousel-prev" onclick="moveCarousel(-1)">&#10094;</button>
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <img src="images/screenshot1.jpg" alt="Screenshot 1" class="carousel-slide">
+                    <img src="images/screenshot2.jpg" alt="Screenshot 2" class="carousel-slide">
+                    <img src="images/screenshot3.jpg" alt="Screenshot 3" class="carousel-slide">
+                    <img src="images/screenshot4.jpg" alt="Screenshot 4" class="carousel-slide">
+                    <img src="images/screenshot5.jpg" alt="Screenshot 5" class="carousel-slide">
+                    <img src="images/screenshot6.jpg" alt="Screenshot 6" class="carousel-slide">
+                    <img src="images/screenshot7.jpg" alt="Screenshot 7" class="carousel-slide">
+                    <img src="images/screenshot8.jpg" alt="Screenshot 8" class="carousel-slide">
+                </div>
+            </div>
+            <button class="carousel-btn carousel-next" onclick="moveCarousel(1)">&#10095;</button>
+        </div>
+        <div class="carousel-dots">
+            <span class="dot active" onclick="goToSlide(0)"></span>
+            <span class="dot" onclick="goToSlide(1)"></span>
+            <span class="dot" onclick="goToSlide(2)"></span>
+            <span class="dot" onclick="goToSlide(3)"></span>
+            <span class="dot" onclick="goToSlide(4)"></span>
+            <span class="dot" onclick="goToSlide(5)"></span>
+            <span class="dot" onclick="goToSlide(6)"></span>
+            <span class="dot" onclick="goToSlide(7)"></span>
+        </div>
+    </section>
+
+    <!-- Feature Highlights -->
+    <section id="features" class="features-section">
+        <h2>Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <!-- You can replace with an image or keep emoji -->
+                    <img src="" alt="" style="display:none;">
+                </div>
+                <h3>Online Multiplayer</h3>
+                <p>Battle friends or rivals online with smooth peer-to-peer connections.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"></div>
+                <h3>Unique Characters</h3>
+                <p>Choose from a roster of distinct frogs, each with their own style and personality.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"></div>
+                <h3>Fast-Paced Combat</h3>
+                <p>Quick reflexes and smart tactics win the day. Dive, dodge, and deliver devastating blows!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <h2>About Divefrog</h2>
+        <p>
+            Divefrog is a competitive action game where frogs face off in fast-paced combat.
+            Jump into online matches, learn the moves in the tutorial, and prove you're the top frog!
+        </p>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="download-section">
+        <h2>Ready to Play?</h2>
+        <p>Download Divefrog and start battling today!</p>
+        <div class="download-options">
+            <a href="https://github.com/brian-lui/Divefrog-compiled/releases/latest/download/Divefrog-win64.zip" class="download-card">
+                <div class="platform">Windows</div>
+                <div class="size">64-bit</div>
+            </a>
+            <a href="https://github.com/brian-lui/Divefrog-compiled/releases/latest/download/Divefrog-macos.zip" class="download-card">
+                <div class="platform">macOS</div>
+                <div class="size">.app bundle</div>
+            </a>
+            <a href="https://github.com/brian-lui/Divefrog-compiled/releases/latest/download/Divefrog-linux.zip" class="download-card">
+                <div class="platform">Linux</div>
+                <div class="size">AppImage</div>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>Divefrog &copy; 2025 | Made with LÖVE</p>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 8;
+
+        function updateCarousel() {
+            const track = document.querySelector('.carousel-track');
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+            // Update dots
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function moveCarousel(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        // Auto-advance every 5 seconds
+        setInterval(() => moveCarousel(1), 5000);
+    </script>
+</body>
+</html>
