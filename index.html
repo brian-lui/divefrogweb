@@ -145,6 +145,7 @@
     <script>
         let currentSlide = 0;
         const totalSlides = 8;
+        let autoScrollTimer;
 
         function updateCarousel() {
             const track = document.querySelector('.carousel-track');
@@ -156,18 +157,28 @@
             });
         }
 
+        function resetAutoScroll() {
+            clearInterval(autoScrollTimer);
+            autoScrollTimer = setInterval(() => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateCarousel();
+            }, 5000);
+        }
+
         function moveCarousel(direction) {
             currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
             updateCarousel();
+            resetAutoScroll();
         }
 
         function goToSlide(index) {
             currentSlide = index;
             updateCarousel();
+            resetAutoScroll();
         }
 
-        // Auto-advance every 5 seconds
-        setInterval(() => moveCarousel(1), 5000);
+        // Start auto-advance every 5 seconds
+        resetAutoScroll();
     </script>
 </body>
 </html>
